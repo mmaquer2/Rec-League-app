@@ -34,6 +34,11 @@ function LandingPage(){
                 //tempUid = user.uid;
                 //changedLoginStatts("true")
                 
+                // if successfully logged in...
+                //navigate to the dashboard page the UID is props
+                
+
+
               }).catch(error => {
                 console.log(error)
               }).then(() => {
@@ -71,18 +76,18 @@ function LandingPage(){
     
     <>
     <h3> Manage all your soccer teams in one place</h3>
-
+    <p>login:</p>
     <div className="login-form">
+    
+        <p>Email Address</p>
+        <TextField id="filled-basic"  sx={{ width: 500 }}  label="name@site.com" variant="filled" onChange={e => setUserName(e.target.value)} />
+        <p>Password:</p>
+        <TextField sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPassword(e.target.value)}  />
+        <p>forgot password?</p>
         
-        <p>your email:</p>
-        <TextField id="filled-basic"  sx={{ width: 500 }}  label="jurgen.pep@gmail.com" variant="filled" onChange={e => setUserName(e.target.value)} />
-        <p>password:</p>
-        <TextField sx={{ width: 500 }} id="filled-basic" label="psword" variant="filled" onChange={e => setPassword(e.target.value)}  />
-        
-        <p>submit</p>
-        <Button variant="outlined" onClick = {loginUser}> Login </Button>
+        <Button variant="contained" sx={{width:500}}onClick = {loginUser}> submit </Button>
 
-        <p>Or Create Account , forgot password</p>
+        <p>Not a memeber? create an account. </p> 
     </div>
     <Footer></Footer>
     
