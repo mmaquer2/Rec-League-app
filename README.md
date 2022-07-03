@@ -20,3 +20,4 @@ npm test
 
 
 ### License:
+MIT

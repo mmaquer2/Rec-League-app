@@ -7,7 +7,7 @@ function Footer(){
 
     return(
         <>
-        <p>Footer here</p>
+        <p>Copyright Michael Maquera 2022</p>
         
         </>
     )
