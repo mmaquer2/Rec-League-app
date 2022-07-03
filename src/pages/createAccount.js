@@ -26,19 +26,27 @@ function CreateAccount(){
     const createNewAccountRoute = (email, password) =>  {
 
         // TODO validation for input of new account...
-
+        let user;
 
         createUserWithEmailAndPassword(auth, email, password).then((credentials) => {
+            user = credentials;
             
-            console.log("Successfully created new user account")
             
           }).catch((error) => {
             console.log(error)
 
           }).then(()=>{
             
-            //create a new user document with their firstname, last 
+            //create a user document in the users collection 
             // navigate back to the login page
+            // first_name
+            // last_name
+            // username
+            // email
+            // user.uid
+
+            console.log("Successfully created new user account")
+
 
           });
 

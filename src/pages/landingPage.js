@@ -15,10 +15,8 @@ function LandingPage(){
 
     const auth = getAuth(app);
     let navigate = useNavigate();
-
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [forgotPasswordDialogOpen, passwordDialogOpen] = useState(false);
 
    
     const loginUser = async () => {
@@ -52,15 +50,16 @@ function LandingPage(){
     // TODO: create account Route 
     const openCreateNewAccountPage = async () => {
 
- 
+       // navigate("../createAccount",  { replace: true });
 
     }
 
 
 
     // TODO: configure forgot password route
-    const openForgotPasswordModal = async () => {
+    const openForgotPasswordPage = async () => {
 
+        // navigate("../resetPassword",  { replace: true });
 
     }
 
