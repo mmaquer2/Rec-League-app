@@ -1,23 +1,14 @@
 
 import '../App.css';
-
 import { useState } from "react"
-import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
-
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { app } from "../firebase-config"
-import { Link } from "react-router-dom";
-
-import { Dashboard } from "./dashboard"
 import { Footer } from "../components/footer"
-
-import { ToastContainer, toast } from 'react-toastify';
-import { create } from '@mui/material/styles/createTransitions';
+import { toast } from 'react-toastify';
 
 
 function LandingPage(){
@@ -32,24 +23,21 @@ function LandingPage(){
 
    
     const loginUser = async () => {
-        
+        let user;
         if(username.length !== 0 && password.length !==0) {
             await signInWithEmailAndPassword (auth,username,password).then(cred => {
-                const user = cred.user;
-                console.log("used has been logged in", user.uid)
-            
-                const tempUid = user.uid;
-
-                navigate("../dashboard", { replace: true });
+                user = cred.user;
+                }).catch(error => {
                 
-                // if successfully logged in...
-                //navigate to the dashboard page the UID is props
-
-
-    
-              }).catch(error => {
+                // TODO: Toast Message on login failure
                 console.log(error)
-              })
+
+              }).then(() => {
+
+                // navigate to the dashboard page the UID in props
+                //navigate("../dashboard", { state: { userID: user.uid, testData: 'THIS IS FROM STATE', auth: auth} }, { replace: true });
+                navigate("../dashboard", { state: { userID: user.uid}}, { replace: true });
+            })
 
         } else {
 
@@ -64,7 +52,7 @@ function LandingPage(){
 
     }
 
-
+    // TODO: create account Route 
     const openCreateNewAccountModal = async () => {
 
         const username = ""
@@ -95,7 +83,7 @@ function LandingPage(){
     }
 
 
-
+    // TODO: configure forgot password route
     const openForgotPasswordModal = async () => {
 
 

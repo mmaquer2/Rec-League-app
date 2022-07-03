@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react"
+import { useLocation } from 'react-router-dom';
 import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { toast } from 'react-toastify';
@@ -7,10 +8,14 @@ import { Footer } from "../components/footer"
 import { SideBar } from "../components/sideBar"
 
 function Dashboard(props){
+    const { state } = useLocation();
+    const { userID, testData, auth } = state; // Read values passed on state
 
     //const db = getFirestore(app);
     //const [teammates, setTeammats] = useState([]);
     const [username, setUserName] = useState("");
+
+
 
     //get logged in user from firebase auth state
 
@@ -27,7 +32,7 @@ function Dashboard(props){
     <>
 
     <div className="dashboard-Container">
-        <h3>Welcome Back { username }</h3>
+        <h3>Welcome Back { userID }</h3>
 
         
 
