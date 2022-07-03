@@ -1,17 +1,22 @@
-# Rec-League-app
-manage your sports teams
+# Soccer Team Manager
 
-- Discuss formations, line-ups, when to make subsitions, set pieces, etc. 
+### Project Description:
+This is a project to assist in managing soccer teams, manage game schedules,
+ discuss formations, assign game line-ups, and communicate within the team.
 
 
-In the project directory, you can run:
-
+### Setup and Usage:
 ```bash
-## install npm dependecies 
- npm i .
 
- npm start
+## install npm dependecies 
+npm i .
+
+npm start
 
 npm test
 
 ```
+
+
+
+### License:
