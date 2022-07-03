@@ -1,15 +1,17 @@
-# Manage Your Soccer Rec League Teams
+# Rec-League-app
+manage your sports teams
 
 - Discuss formations, line-ups, when to make subsitions, set pieces, etc. 
 
 
 In the project directory, you can run:
 
-### `npm start`
+```bash
+## install npm dependecies 
+ npm i .
 
-### `npm test`
+ npm start
 
-### `npm run build`
+npm test
 
-### `npm run eject`
-
+```
