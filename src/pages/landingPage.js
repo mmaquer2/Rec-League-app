@@ -18,7 +18,6 @@ function LandingPage(){
 
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [createAccountDialogOpen, accountDialogOpen] = useState(false);
     const [forgotPasswordDialogOpen, passwordDialogOpen] = useState(false);
 
    
@@ -35,14 +34,12 @@ function LandingPage(){
               }).then(() => {
 
                 // navigate to the dashboard page the UID in props
-                //navigate("../dashboard", { state: { userID: user.uid, testData: 'THIS IS FROM STATE', auth: auth} }, { replace: true });
                 navigate("../dashboard", { state: { userID: user.uid}}, { replace: true });
             })
 
         } else {
 
             console.log("invalid login: username was blank")
-
             toast.error("Username and password cannot be empty! !", {
                 position: toast.POSITION.TOP_LEFT
               });
@@ -53,34 +50,12 @@ function LandingPage(){
     }
 
     // TODO: create account Route 
-    const openCreateNewAccountModal = async () => {
+    const openCreateNewAccountPage = async () => {
 
-        const username = ""
-        const email = ""
-        const passwordOne = ""
-        const passwordTwo = ""
-
-        createNewAccountRoute(email, passwordOne)
-
-        // add username and db to users reference
-
-
+ 
 
     }
 
-
-    const createNewAccountRoute = (email, password) =>  {
-
-        createUserWithEmailAndPassword(auth, email, password).then((credentials) => {
-            
-            console.log("Successfully created new user account")
-            
-          }).catch((error) => {
-            console.log(error)
-
-          });
-
-    }
 
 
     // TODO: configure forgot password route
@@ -103,6 +78,7 @@ function LandingPage(){
         
         <Button variant="contained" sx={{width:500}}onClick = {loginUser}> submit </Button>
 
+        
         <p>Not a memeber? create an account. </p> 
     </div>
     <Footer></Footer>
