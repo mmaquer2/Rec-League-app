@@ -1,15 +1,19 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "@firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCZ0OH5-06bPpEDQb4pRUg3CE8MS2WLLkQ",
-  authDomain: "mike-firebase-test-fca25.firebaseapp.com",
-  projectId: "mike-firebase-test-fca25",
-  storageBucket: "mike-firebase-test-fca25.appspot.com",
-  messagingSenderId: "203028915810",
-  appId: "1:203028915810:web:aaa212225d1d6a083d133b",
-  measurementId: "G-JBNR74SPR5"
+  apiKey: "AIzaSyBrJvM1P6-uAuoULWTaD1-K7vC2lDq55Pk",
+  authDomain: "soccermanagerapp.firebaseapp.com",
+  projectId: "soccermanagerapp",
+  storageBucket: "soccermanagerapp.appspot.com",
+  messagingSenderId: "284908683539",
+  appId: "1:284908683539:web:5bd095e47651c442f35ae6",
+  measurementId: "G-GSL5DX6BDZ"
 };
+
 
 // Initialize Firebase App with default settings
 export const app = initializeApp(firebaseConfig);

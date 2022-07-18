@@ -1,13 +1,26 @@
 
+import { useState, useEffect } from "react"
+
+function Account(props){
+
+    const [username, setUserName] = useState("");
 
 
-function Account() {
 
 
-    return(<>
+    return(
+    <>
+    <p>select current team view</p>
+
+
+    <p>edit your information</p>
+    <p>change your password?</p>
+
+
     
-    
-    </>)
+    </>
+    )
+
 }
 
-export { Account }
+export {Account} 

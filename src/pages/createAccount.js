@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore } from "@firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
 import { app } from "../firebase-config"
 import { Footer } from "../components/footer"
 import { toast } from 'react-toastify';
@@ -15,58 +16,85 @@ import { toast } from 'react-toastify';
 function CreateAccount(){
 
     const auth = getAuth(app);
+    const db = getFirestore(app);
+ 
     let navigate = useNavigate();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordTwo, setPasswordTwo] = useState("");
     const [email, setEmail] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
 
+
+    const startAccountProcess = () =>{
+        //TODO: input validation here: 
+
+      if(password === passwordTwo){
+
+        createNewAccountRoute(email, password);
+      }
+
+      
+    }
 
     const createNewAccountRoute = (email, password) =>  {
 
-        // TODO validation for input of new account...
-        let user;
-
-        createUserWithEmailAndPassword(auth, email, password).then((credentials) => {
-            user = credentials;
-            
-            
-          }).catch((error) => {
-            console.log(error)
-
-          }).then(()=>{
-            
-            //create a user document in the users collection 
-            // navigate back to the login page
-            // first_name
-            // last_name
-            // username
-            // email
-            // user.uid
-
-            console.log("Successfully created new user account")
-
-
-          });
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          createUserRecord(user); // create the user path
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage)
+          
+        });
 
     }
 
 
+    async function createUserRecord(user){
+    
+      await setDoc(doc(db, "users", user.uid), {
+        username: username,
+        email: email,
+        teams: {}
+      }).then(()=>{
+        
 
+        navigate("/", { replace: true }); // navigate back to the login page
+
+      })
+      
+    }
+
+    function openForgotPasswordModal(){
+
+      
+    }
 
 
     return(<>
     
 
     <div className="create-account-form">
-    <p>Email Address</p>
-        <TextField id="filled-basic"  sx={{ width: 500 }}  label="name@site.com" variant="filled" onChange={e => setUserName(e.target.value)} />
+        <h3>Create new Account</h3>
+        <p>password min length of six characters</p>
+
+        <p>Email Address:</p>
+        <TextField id="filled-basic"  sx={{ width: 500 }}  label="name@site.com" variant="filled" onChange={e => setEmail(e.target.value)} />
+        <p>Username:</p>
+        <TextField id="filled-basic"  sx={{ width: 500 }}  label="username" variant="filled" onChange={e => setUserName(e.target.value)} />
         <p>Password:</p>
         <TextField type = "password" sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPassword(e.target.value)}  />
-        <p>Forgot password?</p>
+        <p>Re Enter Password:</p>
+        <TextField type = "password" sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPasswordTwo(e.target.value)}  />
         
-        <Button variant="contained" sx={{width:500}}onClick = {createNewAccountRoute}> submit </Button>
+        <p onClick={openForgotPasswordModal}>Forgot password?</p>
+        
+        <Button variant="contained" sx={{width:500}}onClick = {startAccountProcess}> Submit </Button>
 
 
 

@@ -10,12 +10,12 @@ import { toast } from 'react-toastify';
 import { doc, getDoc } from "firebase/firestore";
 import { Footer } from "../components/footer"
 import { SideBar } from "../components/sideBar"
+import Avatar from '@mui/material/Avatar';
 
 function Dashboard(props){
     // check if the user is already logged in
     const auth = getAuth(app);
     const db = getFirestore(app);
-    let navigate = useNavigate();
     //const { state } = useLocation();
     //const { userID, testData } = state; // Read values passed on state
     var user = auth.currentUser;
@@ -23,6 +23,7 @@ function Dashboard(props){
     const [teammates, setTeammats] = useState([]);
     const [username, setUserName] = useState("");
     const [userObj, setUserObj] = useState({});
+    
 
     //store username into local storage
     useEffect(function persistUsername() {
@@ -36,8 +37,9 @@ function Dashboard(props){
         const docSnap = await getDoc(userDocRef); // get the document with the user UID
         
         console.log(docSnap.data().username);
-        const userObject = docSnap.data();
-        setUserName(userObject.username);
+        setUserName(docSnap.data().username)
+        //const userObject = docSnap.data();
+        //setUserName(userObject.username);
 
     }
 
@@ -45,24 +47,27 @@ function Dashboard(props){
     //populate team data
     // if no teams exist, show join teams option
 
-    const logoutUser = async () => { 
-        await auth.signOut().then(() => {
-          console.log("user has logged out")
-        }).then(() => {
-            navigate("/", { replace: true }); // navigate back to the login page
-        })
-    }
+ 
 
+
+    /****
+     *  <div><p>My Teams:</p></div>
+        {yourTeams.map((item) => (
+          <li>{item}</li>
+        ))}
+     ***/
 
     return(
     <>
 
-    <div className="dashboard-Container">
-        <h3>Welcome Back { username }</h3>
+    <SideBar></SideBar>
 
+    <div className="dashboard-container">
+
+        <h3>Welcome { username }</h3>
+       
         
-
-
+      
     </div>
     
     <Footer></Footer>

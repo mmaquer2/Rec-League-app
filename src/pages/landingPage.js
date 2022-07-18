@@ -17,6 +17,7 @@ function LandingPage(){
     let navigate = useNavigate();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    
 
    
     const loginUser = async () => {
@@ -44,23 +45,20 @@ function LandingPage(){
         
         }
 
+    }
+
+    const openCreateNewAccountPage = () => {
+
+       navigate("../createAccount",  { replace: true });
 
     }
 
-    // TODO: create account Route 
-    const openCreateNewAccountPage = async () => {
-
-       // navigate("../createAccount",  { replace: true });
-
-    }
 
 
+    // TODO: configure forgot password route and popup modal
+    const openForgotPasswordModal = async () => {
 
-    // TODO: configure forgot password route
-    const openForgotPasswordPage = async () => {
-
-        // navigate("../resetPassword",  { replace: true });
-
+      
     }
 
     return(
@@ -73,12 +71,11 @@ function LandingPage(){
         <TextField id="filled-basic"  sx={{ width: 500 }}  label="name@site.com" variant="filled" onChange={e => setUserName(e.target.value)} />
         <p>Password:</p>
         <TextField type = "password" sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPassword(e.target.value)}  />
-        <p>Forgot password?</p>
+        <p onClick={openForgotPasswordModal}>Forgot password?</p>
         
         <Button variant="contained" sx={{width:500}}onClick = {loginUser}> submit </Button>
 
-        
-        <p>Not a memeber? create an account. </p> 
+        <p onClick={openCreateNewAccountPage}> Not a memeber? create an account. </p>
     </div>
     <Footer></Footer>
    
