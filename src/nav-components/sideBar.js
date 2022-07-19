@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -13,10 +11,22 @@ import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { app } from "../firebase-config"
 
+//ICON
+import SvgIcon from '@mui/material/SvgIcon';
+import EmailIcon from '@mui/icons-material/Email';
+import HomeIcon from '@mui/icons-material/Home';
+import InboxIcon from '@mui/icons-material/Inbox';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GroupsIcon from '@mui/icons-material/Groups';
+import Groups from '@mui/icons-material/Groups';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function SideBar() {
 
     //TODO: Icons for the sidebar menu items
+
+    //TODO: pop up dialog for 
 
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -72,12 +82,14 @@ function SideBar() {
     <div className="sidebar-container">
       {['left'].map((anchor) => (
         <React.Fragment key={'left'}>
-          <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
+         
+          <MenuIcon fontSize = "large" onClick={toggleDrawer(anchor, true)}></MenuIcon>
           
           <Drawer anchor={'left'} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
           <ListItem key={"Home"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
+              <HomeIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Home"} onClick={openHomePage} />
             </ListItemButton>
@@ -85,6 +97,7 @@ function SideBar() {
           <ListItem key={"Account"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
+                <AccountCircleIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Account"} onClick={openAccountPage} />
             </ListItemButton>
@@ -93,6 +106,7 @@ function SideBar() {
           <ListItem key={"Messages"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
+              <EmailIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Messages"} onClick={openMessagePage} />
             </ListItemButton>
@@ -101,6 +115,7 @@ function SideBar() {
           <ListItem key={"Team"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
+                <Groups fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Team"} onClick={openTeamPage} />
             </ListItemButton>
@@ -109,7 +124,7 @@ function SideBar() {
           <ListItem key={"Log Out"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                
+                <LogoutIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Log Out"} onClick={logoutUser} />
             </ListItemButton>
