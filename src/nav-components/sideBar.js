@@ -40,7 +40,7 @@ function SideBar() {
 
  
     function openHomePage(){
-        navigate("/", { replace: true });
+        navigate("/dashboard", { replace: true });
 
     
     }
@@ -55,7 +55,7 @@ function SideBar() {
     }
 
     function openTeamPage(){
-       // navigate("/Team", { replace: true });
+       navigate("/Teams", { replace: true });
 
     }
 

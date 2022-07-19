@@ -26,7 +26,7 @@ function CreateAccount(){
     const startAccountProcess = () =>{
         //TODO: input validation here: 
 
-      if(password === passwordTwo){
+      if(password === passwordTwo && password.length >= 6){
 
         createNewAccountRoute(email, password);
       }
@@ -34,20 +34,17 @@ function CreateAccount(){
       
     }
 
-    const createNewAccountRoute = (email, password) =>  {
+    const createNewAccountRoute = (newEmail, newPassword) =>  {
 
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, newEmail, newPassword)
         .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
+          const user = userCredential.user; // get newly created 
           createUserRecord(user); // create the user path
-          
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode + errorMessage)
-          
         });
 
     }
@@ -60,16 +57,12 @@ function CreateAccount(){
         email: email,
         teams: {}
       }).then(()=>{
-        
-
         navigate("/", { replace: true }); // navigate back to the login page
-
       })
       
     }
 
     function openForgotPasswordModal(){
-
       
     }
 

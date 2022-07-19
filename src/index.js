@@ -9,6 +9,7 @@ import { Dashboard } from "./pages/dashboard"
 import { CreateAccount } from "./pages/createAccount"
 import {Account} from "./sub-pages/account"
 import {Messages} from "./sub-pages/messages"
+import {Team} from "./sub-pages/team"
 
 const root = ReactDOM.createRoot(
   document.getElementById("root")
@@ -21,6 +22,8 @@ root.render(
       <Route path ="/createAccount" element = {<CreateAccount />} />
       <Route path ="/Account" element = {<Account />} />
       <Route path ="/Messages" element = {<Messages />} />
+      <Route path ="/Teams" element = {<Team />} />
+
     </Routes>
   </BrowserRouter>
 );
