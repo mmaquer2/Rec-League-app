@@ -17,32 +17,34 @@ import { doc, getDoc } from "firebase/firestore";
 
 function StatsCard() {
 
-  const auth = getAuth(app);
   const db = getFirestore(app);
-  var user = auth.currentUser;
+  const auth = getAuth(app);
+  const user = auth.currentUser;
 
   const [gamesPlayed, setGamesPlayed] = useState("");
-  const [goalsScored, setGoal] = useState("");
+  const [goalsScored, setGoals] = useState("");
   const [assistsMade, setAssists] = useState("");
-  
+     
+  useEffect(function persistUsername() {
+    fetchUserStats();
+  }, []);
+
 
   async function fetchUserStats(){
     const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
     const docSnap = await getDoc(userDocRef);
     if(docSnap.exists()) {
-      console.log(docSnap.data())
-      //docSnap.data().goals;
-      //docSnap.data().assists;
-      //docSnap.data
-
+      console.log("User Stats:")
+      console.log(docSnap.data().stats)
+      const stats = docSnap.data().stats;
+      setGamesPlayed(stats.games_played);
+      setGoals(stats.goals)
+      setAssists(stats.assists);
     } else{
-
-      console.log("there was a problem fetching user stats")
+      console.log("ERROR: there was a problem fetching user stats")
     }
 
-
   }
-
 
   return (
     <Box sx={{ minWidth: 275 }}>
