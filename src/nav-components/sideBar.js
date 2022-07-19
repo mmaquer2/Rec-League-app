@@ -22,14 +22,12 @@ import Groups from '@mui/icons-material/Groups';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 
-function SideBar() {
+function SideBar(props) {
 
-    //TODO: Icons for the sidebar menu items
 
-    //TODO: pop up dialog for 
+    //TODO: pop up dialog for verifying log out action 
 
     const auth = getAuth(app);
-    const db = getFirestore(app);
     let navigate = useNavigate();
 
   const [state, setState] = React.useState({

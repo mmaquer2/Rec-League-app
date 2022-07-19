@@ -15,13 +15,19 @@ function Account(props){
     <>
 
     <SideBar></SideBar>
-    <p>select current team view</p>
-    <p>edit your information</p>
-    <p>change your password?</p>
+    
+    <div className="account-container">
+        <h3>Your Account</h3>
 
+        <p>create a new team?</p>
+        <p>edit your information?</p>
+        <p>change your password?</p>
+    </div>
+
+  
     </>
     )
 
 }
 
-export {Account} 
+export { Account } 

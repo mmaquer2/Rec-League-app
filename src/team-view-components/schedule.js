@@ -1,11 +1,13 @@
 
 
 // component to show the schedule of the team
-function Scheudle(props){
+function Schedule(props){
 
 
     return(
     <>
+
+    <p>Team Schedule:</p>
     
     
     </>
@@ -13,4 +15,4 @@ function Scheudle(props){
 
 }
 
-export {Scheudle}
+export { Schedule}

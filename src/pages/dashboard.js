@@ -15,6 +15,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { Footer } from "../nav-components/footer"
 import { SideBar } from "../nav-components/sideBar"
 import {StatsCard} from "../user-account-components/statsCard"
+import {OverviewCard} from "../user-account-components/overviewCard"
 
 // Material UI imports
 import { styled } from '@mui/material/styles';
@@ -28,28 +29,7 @@ function Dashboard(props){
     // check if the user is already logged in
     const auth = getAuth(app);
     const db = getFirestore(app);
-    //const { state } = useLocation();
-    //const { userID, testData } = state; // Read values passed on state
     var user = auth.currentUser;
-
-    const [username, setUserName] = useState("");
-    const [userTeams, setUserTeams] = useState([]);
-    
-
-    //store username into local storage
-    useEffect(function persistUsername() {
-        getUserData();
-    }, []);
-
-
-    async function getUserData(){
-        
-        const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
-        const docSnap = await getDoc(userDocRef); // get the document with the user UID
-        setUserName(docSnap.data().username);
-        setUserTeams(docSnap.data().teams);
-
-    }
 
 
 
@@ -60,16 +40,17 @@ function Dashboard(props){
     <SideBar></SideBar>
 
     <div className="dashboard-container">
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-        <h3>Welcome { username }</h3>
-        <div><p>Your Teams:</p></div>
-        {userTeams.map((item) => (
-          <li>{item}</li>
-        ))}
+    <Box sx={{ flexGrow:120 }}>
+      <Grid container spacing={12}
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      
+      >
+        <Grid item xs={5} md={5}>
+        <OverviewCard></OverviewCard>
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid item xs={5} md={5}>
         <StatsCard></StatsCard>
         </Grid>
       </Grid>

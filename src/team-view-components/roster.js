@@ -15,6 +15,7 @@ function Roster(props){
     return(
     <>
     
+    <p>Team Roster:</p>
     
     </>
     )

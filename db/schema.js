@@ -5,7 +5,9 @@ const User = {
     username: "", 
     first_name: "",
     last_name: "",
-    email: ""
+    email: "",
+    password: "",
+    teams:[]
 
 };
 
@@ -13,12 +15,24 @@ const User = {
 const Team = {
 
     team_name: "",
-    players: [],
-
+    manager: {},
+    players: {},
 
 
 
 };
+
+
+// roles player, manager, asst manager, etc
+// positions: GK, D, M, F
+const player = {
+
+    username: "",
+    position: "",
+    role: "",
+
+}
+
 
 const Scheudle = {
     league: "Boston Social Sports 7v7",
