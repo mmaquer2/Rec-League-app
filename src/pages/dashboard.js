@@ -8,8 +8,8 @@ import { getAuth } from "firebase/auth";
 import { app } from "../firebase-config"
 import { toast } from 'react-toastify';
 import { doc, getDoc } from "firebase/firestore";
-import { Footer } from "../components/footer"
-import { SideBar } from "../components/sideBar"
+import { Footer } from "../nav-components/footer"
+import { SideBar } from "../nav-components/sideBar"
 import Avatar from '@mui/material/Avatar';
 
 function Dashboard(props){

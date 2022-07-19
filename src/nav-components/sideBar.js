@@ -46,12 +46,12 @@ function SideBar() {
     }
 
     function openAccountPage(){
-        //navigate("/Account", { replace: true });
+        navigate("/Account", { replace: true });
 
     }
 
     function openMessagePage(){
-       // navigate("/Messages", { replace: true });
+       navigate("/Messages", { replace: true });
     }
 
     function openTeamPage(){

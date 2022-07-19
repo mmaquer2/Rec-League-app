@@ -7,6 +7,8 @@ import { BrowserRouter, Route,Routes } from "react-router-dom";
 
 import { Dashboard } from "./pages/dashboard"
 import { CreateAccount } from "./pages/createAccount"
+import {Account} from "./sub-pages/account"
+import {Messages} from "./sub-pages/messages"
 
 const root = ReactDOM.createRoot(
   document.getElementById("root")
@@ -17,7 +19,8 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path ="/createAccount" element = {<CreateAccount />} />
-
+      <Route path ="/Account" element = {<Account />} />
+      <Route path ="/Messages" element = {<Messages />} />
     </Routes>
   </BrowserRouter>
 );

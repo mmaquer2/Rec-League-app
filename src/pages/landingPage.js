@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase-config"
-import { Footer } from "../components/footer"
+import { Footer } from "../nav-components/footer"
 import { toast } from 'react-toastify';
 
 

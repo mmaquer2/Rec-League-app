@@ -8,9 +8,7 @@ import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import { app } from "../firebase-config"
-import { Footer } from "../components/footer"
-import { toast } from 'react-toastify';
-
+import { Footer } from "../nav-components/footer"
 
 
 function CreateAccount(){
