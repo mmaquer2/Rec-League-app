@@ -1,19 +1,16 @@
 
 import { useState, useEffect } from "react"
 import { SideBar } from "../nav-components/sideBar";
+import { Footer } from "../nav-components/footer"
 
-import {StatsCard} from "../user-account-components/statsCard"
 
 function Account(props){
 
     const [username, setUserName] = useState("");
 
+    
 
-
-
-    return(
-    <>
-
+    return (<>
     <SideBar></SideBar>
     
     <div className="account-container">
@@ -23,10 +20,9 @@ function Account(props){
         <p>edit your information?</p>
         <p>change your password?</p>
     </div>
-
-  
-    </>
-    )
+    
+    <Footer></Footer>
+    </>)
 
 }
 

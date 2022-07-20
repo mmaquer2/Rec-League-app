@@ -14,8 +14,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 // other components
+
 import { Roster } from "../team-view-components/roster"
 import { Schedule } from "../team-view-components/schedule"
+import { Footer } from "../nav-components/footer"
 
 function Team(props){
 
@@ -33,21 +35,31 @@ function Team(props){
     }, []);
 
 
+    //TODO: force log out and nav to login page if user is not logged, or UID is lost
+
+    // fetch user data document
     async function getUserData(){        
         const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
         const docSnap = await getDoc(userDocRef); // get the document with the user UID
-        setUserName(docSnap.data().username);
-        setUserTeams(docSnap.data().teams);
+        if(docSnap.exists()){
+            setUserName(docSnap.data().username);
+            setUserTeams(docSnap.data().teams);
+        } else {
+            console.log("ERROR: fetching user data")
+        }
     }
 
+
+    // handle the change of the select element 
     const handleChange = (event) => {
         setSelectedTeam(event.target.value)
-        getTeamData(selectedTeam);
-
-      
-  
+        
+        console.log("select targted value " + event.target.value)
+        //getTeamData(selectedTeam);
     };
-    
+
+
+
     async function getTeamData(teamName){
 
         if(teamName !== ""){
@@ -62,20 +74,13 @@ function Team(props){
               console.log("No such document Found in Teams!");
             }
         }
-   
-    
-
-       
 
     }
 
-
-
     return(<>
+    
     <SideBar></SideBar>
     <h2>Your Teams</h2>
-    
-
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Select Team to View</InputLabel>
@@ -90,11 +95,10 @@ function Team(props){
             </FormControl>
         </Box>
 
-
         <Roster></Roster>
         <Schedule></Schedule>
-         
-    
+        <Footer></Footer>
+            
     </>)
 
 }
