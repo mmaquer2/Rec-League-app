@@ -58,6 +58,8 @@ function CreateAccount(){
         teams: {}
       }).then(()=>{
         navigate("/", { replace: true }); // navigate back to the login page
+      }).catch((error) =>{
+        console.log(error)
       })
       
     }
@@ -86,8 +88,6 @@ function CreateAccount(){
         <p onClick={openForgotPasswordModal}>Forgot password?</p>
         
         <Button variant="contained" sx={{width:500}}onClick = {startAccountProcess}> Submit </Button>
-
-
 
 
     </div>

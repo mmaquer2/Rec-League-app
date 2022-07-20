@@ -1,6 +1,5 @@
 // Tests for functions related to the landing page component
 
-
 function testLogin(){
 
 
@@ -18,6 +17,7 @@ function testLogin(){
 }
 
 
+// test create account
 function testCreateAccount(){
 
     // fail on invalid email
@@ -30,8 +30,12 @@ function testCreateAccount(){
 }
 
 
+// test reset password
 function testResetPassword(){
 
 
 
 }
+
+
+// test logout

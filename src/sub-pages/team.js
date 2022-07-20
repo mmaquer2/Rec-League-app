@@ -24,6 +24,9 @@ function Team(props){
     const [username, setUserName] = useState("");
     const [userTeams, setUserTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('');
+
+    const [teamPlayers, setTeamPlayers] = useState([]);
+
     const auth = getAuth(app);
     const db = getFirestore(app);
     var user = auth.currentUser;
@@ -55,7 +58,7 @@ function Team(props){
         setSelectedTeam(event.target.value)
         
         console.log("select targted value " + event.target.value)
-        //getTeamData(selectedTeam);
+        getTeamData(event.target.value);
     };
 
 
@@ -69,6 +72,10 @@ function Team(props){
             
             if (docSnap.exists()) {
               console.log("Document data:", docSnap.data());
+
+              
+                setTeamPlayers(docSnap.data().players);
+
             } else {
               
               console.log("No such document Found in Teams!");
@@ -88,14 +95,13 @@ function Team(props){
                 value={selectedTeam}
                 label="Select Team to View"
                 onChange={handleChange}>
-                <MenuItem value=""></MenuItem>
                 {userTeams.map((item) => (
                 <MenuItem value = {item}> {item}</MenuItem>))}
             </Select>
             </FormControl>
         </Box>
 
-        <Roster></Roster>
+        <Roster players = {teamPlayers} ></Roster>
         <Schedule></Schedule>
         <Footer></Footer>
             

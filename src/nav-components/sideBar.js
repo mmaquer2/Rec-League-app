@@ -21,6 +21,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import Groups from '@mui/icons-material/Groups';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
+import ScoreboardIcon from '@mui/icons-material/Scoreboard';
 
 function SideBar(props) {
 
@@ -64,6 +65,11 @@ function SideBar(props) {
 
     function openTeamPage(){
        navigate("/Teams", { replace: true });
+
+    }
+
+    function openScoreKeeperPage(){
+
 
     }
 
@@ -116,6 +122,15 @@ function SideBar(props) {
                 <Groups fontSize="large" />
               </ListItemIcon>
               <ListItemText primary={"Team"} onClick={openTeamPage} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key={"Scorekeeper"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ScoreboardIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary={"Scorekeeper"} onClick={openScoreKeeperPage} />
             </ListItemButton>
           </ListItem>
 
