@@ -73,12 +73,11 @@ function Team(props){
             if (docSnap.exists()) {
               console.log("Document data:", docSnap.data());
 
-              
                 setTeamPlayers(docSnap.data().players);
 
             } else {
               
-              console.log("No such document Found in Teams!");
+              console.log("No such document Found in the teams collection!");
             }
         }
 

@@ -1,13 +1,20 @@
 
+import {useState, useEffect} from "react"
 
 
+function Navbar(props){
 
-function Navbar(){
+    const [username, setUserName] = useState("")
+
+    useEffect(() => {
+        setUserName(props.username)
+    })
 
 
     return(
     <>
     
+
     
     </>
     )
