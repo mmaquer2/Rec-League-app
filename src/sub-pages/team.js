@@ -13,8 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-// other components
-
+// team view components:
+import {TeamOverview } from "../team-view-components/teamOverview"
 import { Roster } from "../team-view-components/roster"
 import { Schedule } from "../team-view-components/schedule"
 import { Footer } from "../nav-components/footer"
@@ -56,8 +56,6 @@ function Team(props){
     // handle the change of the select element 
     const handleChange = (event) => {
         setSelectedTeam(event.target.value)
-        
-        console.log("select targted value " + event.target.value)
         getTeamData(event.target.value);
     };
 
@@ -66,15 +64,13 @@ function Team(props){
     async function getTeamData(teamName){
 
         if(teamName !== ""){
-            console.log("Selected Drop Down Team Name:"+teamName)
             const docRef = doc(db, "teams", teamName);
             const docSnap = await getDoc(docRef);
             
             if (docSnap.exists()) {
-              console.log("Document data:", docSnap.data());
-
+              
                 setTeamPlayers(docSnap.data().players);
-
+            
             } else {
               
               console.log("No such document Found in the teams collection!");
@@ -82,6 +78,10 @@ function Team(props){
         }
 
     }
+
+
+    // FIXME: this component when added causes a react re render bug 
+    // <TeamOverview></TeamOverview>
 
     return(<>
     
@@ -99,7 +99,8 @@ function Team(props){
             </Select>
             </FormControl>
         </Box>
-
+        
+        
         <Roster players = {teamPlayers} ></Roster>
         <Schedule></Schedule>
         <Footer></Footer>
