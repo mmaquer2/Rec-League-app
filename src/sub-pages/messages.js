@@ -13,6 +13,9 @@ function Messages(props){
     <SideBar></SideBar>
         <h2> Messages</h2>
 
+
+        
+
     <Footer></Footer>
 
     

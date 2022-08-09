@@ -24,21 +24,24 @@ function Roster(props){
       return { username, position, role, number};
     }
     
-    console.log(props.players)
 
-    //FIXME: display the team roster after the team selector has changed values
+    //TODO: how to handle changes to the table after the team state changes?
 
     useEffect(function handleDataChange(){
+     
       setTeamRoster(props.players);
       persistTeamPlayers(teamRoster);
 
     }, []);
 
+
+  let emptyList = []
+
   // place player data in the roster table 
    function persistTeamPlayers(players) {
-      console.log("yeet yeet test here")
-      let tempRow = []
 
+      let tempRow = []
+      setTableRoster([])
       //iterate through props.players, set the table values 
       players.forEach((value, key) =>{
         console.log(value)
@@ -53,7 +56,11 @@ function Roster(props){
 
     //<Button variant="contained" sx={{width:50}}onClick = {openAddPlayerModal}> Add Player </Button> 
     // open modal to invite player to the team.
-    //function openAddPlayerModal(){} 
+    function openAddPlayerModal(){
+
+
+
+    } 
 
    
     return(
@@ -87,8 +94,10 @@ function Roster(props){
           ))}
         </TableBody>
       </Table>
+      
     </TableContainer>
-  
+    <Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
+
 
     
     </>

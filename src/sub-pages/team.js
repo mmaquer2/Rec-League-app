@@ -57,7 +57,7 @@ function Team(props){
     const handleChange = (event) => {
         setSelectedTeam(event.target.value)
         getTeamData(event.target.value);
-    };
+    }
 
 
 
@@ -70,6 +70,7 @@ function Team(props){
             if (docSnap.exists()) {
               
                 setTeamPlayers(docSnap.data().players);
+                console.log(docSnap.data().players)
             
             } else {
               
