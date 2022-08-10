@@ -26,19 +26,25 @@ function Team(props){
     const [selectedTeam, setSelectedTeam] = useState('');
 
     const [teamPlayers, setTeamPlayers] = useState([]);
+    const [teamSchedule, setTeamSchedule] = useState([]);
+    const [teamStatistics,setTeamStats] = useState([]);
 
     const auth = getAuth(app);
     const db = getFirestore(app);
-    var user = auth.currentUser;
+    const user = auth.currentUser;
 
-    
+     //TODO: force log out and nav to login page if user is not logged, or UID is lost
+    if(!user.isLoggedIn){
+        console.log("User is not logged in");
+    }
+
    //store username into local storage
    useEffect(function persistUsername() {
         getUserData();
     }, []);
 
 
-    //TODO: force log out and nav to login page if user is not logged, or UID is lost
+   
 
     // fetch user data document
     async function getUserData(){        
@@ -64,17 +70,17 @@ function Team(props){
     async function getTeamData(teamName){
 
         if(teamName !== ""){
-            const docRef = doc(db, "teams", teamName);
+            const docRef = doc(db, "teams", teamName); // get Reference to the teams collection
             const docSnap = await getDoc(docRef);
             
             if (docSnap.exists()) {
               
                 setTeamPlayers(docSnap.data().players);
-                console.log(docSnap.data().players)
+                console.log(docSnap.data().players); // log team data that was fetched 
             
             } else {
               
-              console.log("No such document Found in the teams collection!");
+              console.log("Error: No such document Found in the teams collection!");
             }
         }
 
@@ -102,7 +108,7 @@ function Team(props){
         </Box>
         
         
-        <Roster players = {teamPlayers} ></Roster>
+        <Roster key = "1" players = {teamPlayers} ></Roster>
         <Schedule></Schedule>
         <Footer></Footer>
             

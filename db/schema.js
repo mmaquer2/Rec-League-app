@@ -33,6 +33,13 @@ const player = {
 
 }
 
+const gameEvent = {
+    "date": "",
+    "time": "",
+    "location": ""
+
+}
+
 
 const Scheudle = {
     league: "Boston Social Sports 7v7",

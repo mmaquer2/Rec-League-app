@@ -18,32 +18,22 @@ import Paper from '@mui/material/Paper';
 function Roster(props){
 
     const [teamRoster, setTeamRoster] = useState([])
-    const [rows,setTableRoster] = useState([])
+    const [rows,setTableRoster] = useState(teamRoster)
 
     function createData(username, position, role, number) {
       return { username, position, role, number};
     }
     
 
-    //TODO: how to handle changes to the table after the team state changes?
-
-    useEffect(function handleDataChange(){
-     
-      setTeamRoster(props.players);
-      persistTeamPlayers(teamRoster);
-
-    }, []);
-
-
-  let emptyList = []
+    //TODO: how to handle changes to the table after the team state changes
 
   // place player data in the roster table 
-   function persistTeamPlayers(players) {
-
+   function persistTeamPlayers() {
+     setTeamRoster(props.players);
       let tempRow = []
       setTableRoster([])
       //iterate through props.players, set the table values 
-      players.forEach((value, key) =>{
+      teamRoster.forEach((value, key) =>{
         console.log(value)
         tempRow.push(createData(value.username, value.position, value.role,"1"));
 
@@ -53,11 +43,18 @@ function Roster(props){
       
     }
 
+    /*
+    useEffect(function handleDataChange(){
+     
+      persistTeamPlayers();
+
+    });
+    */
 
     //<Button variant="contained" sx={{width:50}}onClick = {openAddPlayerModal}> Add Player </Button> 
     // open modal to invite player to the team.
     function openAddPlayerModal(){
-
+      console.log("Open modal to invite player to the team");
 
 
     } 
@@ -71,7 +68,7 @@ function Roster(props){
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Username</TableCell>
+            <TableCell align ="right">Username</TableCell>
             <TableCell align="right">Position</TableCell>
             <TableCell align="right">Role</TableCell>
             <TableCell align="right">Number</TableCell>
@@ -94,8 +91,8 @@ function Roster(props){
           ))}
         </TableBody>
       </Table>
-      
     </TableContainer>
+    
     <Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
 
 
