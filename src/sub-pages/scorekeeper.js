@@ -12,6 +12,9 @@ function ScoreKeeper(){
 
 
 
+    let currentAction = []
+
+
 
     return (<>
 

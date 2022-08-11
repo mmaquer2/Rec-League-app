@@ -22,7 +22,7 @@ import Groups from '@mui/icons-material/Groups';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import ScoreboardIcon from '@mui/icons-material/Scoreboard';
-
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 function SideBar(props) {
 
 
@@ -65,6 +65,10 @@ function SideBar(props) {
 
     function openTeamPage(){
        navigate("/Teams", { replace: true });
+
+    }
+
+    function openPlannerPage(){
 
     }
 
@@ -116,14 +120,24 @@ function SideBar(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem key={"Team"} disablePadding>
+          <ListItem key={"Manager"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <Groups fontSize="large" />
               </ListItemIcon>
-              <ListItemText primary={"Team"} onClick={openTeamPage} />
+              <ListItemText primary={"Manage Teams"} onClick={openTeamPage} />
             </ListItemButton>
           </ListItem>
+
+          <ListItem key={"PLanner"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ContentPasteIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary={"Game Planner"} onClick={openPlannerPage} />
+            </ListItemButton>
+          </ListItem>
+
 
           <ListItem key={"Scorekeeper"} disablePadding>
             <ListItemButton>

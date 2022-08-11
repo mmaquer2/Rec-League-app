@@ -136,10 +136,11 @@ function Team(props){
   
     function persistTeamSchedule(){
       let tempRows = []
-  
-      gameDates.forEach((value, key)=>{
-        tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
-      });
+      if(gameDates.length > 0){
+        gameDates.forEach((value, key)=>{
+            tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
+        });
+     }
   
       setScheduleData(tempRows);
   
@@ -150,6 +151,11 @@ function Team(props){
        
 
     } 
+
+    function openAddGameEventModal(){
+
+
+    }
 
 
     return(<>
@@ -228,6 +234,7 @@ function Team(props){
             </TableBody>
         </Table>
         </TableContainer>
+        <Button variant="contained" sx={{width:250}}onClick = {openAddGameEventModal}> Add Game Event </Button>
 
         
         <Footer></Footer>

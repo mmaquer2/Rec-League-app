@@ -28,6 +28,10 @@ npm run build
 ```
 
 
+### Resources:
+- react drag and drop plugin: 
+ https://react-dnd.github.io/react-dnd/examples
+
 
 ### License:
 MIT
