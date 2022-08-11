@@ -18,23 +18,25 @@ import Paper from '@mui/material/Paper';
 function Schedule(props){
 
   const [rows, setScheduleData] = useState([]);
-  
+  const [gameDates, setGameDates] = useState([]);
 
   function createTableDate(date, time, location , opponent) {
     return {date, time, location , opponent};
   }
 
-
-  useEffect(function persistScheduleData(gameDates){
+  function setTableData(){
+    setGameDates(props.teamSchedule);
     let tempRows = []
 
-    //gameDates.forEach((value, key)=>{
-    //  tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
-    //});
+    gameDates.forEach((value, key)=>{
+      tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
+    });
 
     setScheduleData(tempRows);
 
-  },[]);
+  }
+  
+
 
 
     

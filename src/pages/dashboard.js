@@ -31,6 +31,26 @@ function Dashboard(props){
     const db = getFirestore(app);
     var user = auth.currentUser;
 
+    // fetch user data and pass it to the correct properties in the sidebar
+
+    /*
+
+  
+    // fetch user data document
+    async function getUserData(){        
+        const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
+        const docSnap = await getDoc(userDocRef); // get the document with the user UID
+        if(docSnap.exists()){
+            setUserName(docSnap.data().username);
+            setUserTeams(docSnap.data().teams);
+        } else {
+            console.log("ERROR: fetching user data")
+        }
+    }
+
+
+
+    */
 
 
     

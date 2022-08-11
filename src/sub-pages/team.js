@@ -13,6 +13,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+
+
 // team view components:
 import {TeamOverview } from "../team-view-components/teamOverview"
 import { Roster } from "../team-view-components/roster"
@@ -24,6 +34,10 @@ function Team(props){
     const [username, setUserName] = useState("");
     const [userTeams, setUserTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('');
+    const [teamRoster, setTeamRoster] = useState([])
+    const [rows,setTableRoster] = useState([])
+    const [dateRows, setScheduleData] = useState([]);
+    const [gameDates, setGameDates] = useState([]);
 
     const [teamPlayers, setTeamPlayers] = useState([]);
     const [teamSchedule, setTeamSchedule] = useState([]);
@@ -34,17 +48,10 @@ function Team(props){
     const user = auth.currentUser;
 
      //TODO: force log out and nav to login page if user is not logged, or UID is lost
-    if(!user.isLoggedIn){
-        console.log("User is not logged in");
-    }
+    //if(!user.isLoggedIn){
+    //    console.log("User is not logged in");
+   // }
 
-   //store username into local storage
-   useEffect(function persistUsername() {
-        getUserData();
-    }, []);
-
-
-   
 
     // fetch user data document
     async function getUserData(){        
@@ -58,13 +65,11 @@ function Team(props){
         }
     }
 
-
     // handle the change of the select element 
     const handleChange = (event) => {
         setSelectedTeam(event.target.value)
         getTeamData(event.target.value);
     }
-
 
 
     async function getTeamData(teamName){
@@ -76,24 +81,84 @@ function Team(props){
             if (docSnap.exists()) {
               
                 setTeamPlayers(docSnap.data().players);
-                console.log(docSnap.data().players); // log team data that was fetched 
+                let emptyArray = []
+                setTeamRoster(emptyArray);
+                setTeamRoster(docSnap.data().players);
+                
+                setGameDates(emptyArray)
+                setGameDates(docSnap.data().gameEvents);
+                
+                
+                
+                persistTeamPlayers();
+                persistTeamSchedule();
             
             } else {
               
               console.log("Error: No such document Found in the teams collection!");
             }
         }
-
     }
 
+    //store username into local storage
+    useEffect(function persistUsername() {
+        getUserData();
+    }, []);
 
-    // FIXME: this component when added causes a react re render bug 
-    // <TeamOverview></TeamOverview>
+    
+
+    function createData(username, position, role, number) {
+        return { username, position, role, number};
+      }
+
+        // place player data in the roster table 
+   function persistTeamPlayers() {
+        
+        let tempRow = []
+        console.log("team roster list" + teamRoster)
+        if(teamRoster.length > 0){
+             //iterate through props.players, set the table values 
+            teamRoster.forEach((value, key) =>{
+            tempRow.push(createData(value.username, value.position, value.role,"1"));
+        })
+        }
+       
+     
+     setTableRoster(tempRow)
+     
+   }
+
+
+
+    function createTableDate(date, time, location , opponent) {
+      return {date, time, location , opponent};
+    }
+  
+    function persistTeamSchedule(){
+      let tempRows = []
+  
+      gameDates.forEach((value, key)=>{
+        tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
+      });
+  
+      setScheduleData(tempRows);
+  
+    }
+    
+    function openAddPlayerModal(){
+      
+       
+
+    } 
+
 
     return(<>
     
     <SideBar></SideBar>
     <h2>Your Teams</h2>
+
+
+            
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Select Team to View</InputLabel>
@@ -102,14 +167,69 @@ function Team(props){
                 label="Select Team to View"
                 onChange={handleChange}>
                 {userTeams.map((item) => (
-                <MenuItem value = {item}> {item}</MenuItem>))}
+                <MenuItem key ={item.name} value = {item}> {item}</MenuItem>))}
             </Select>
             </FormControl>
         </Box>
         
+        <h4>Team Summary: </h4>
+        <p>Form:</p>
+
+        <p>Team Roster:</p>
+      <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align ="right">Username</TableCell>
+            <TableCell align="right">Position</TableCell>
+            <TableCell align="right">Role</TableCell>
+            <TableCell align="right">Number</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.username}
+              </TableCell>
+              <TableCell align="right">{row.position}</TableCell>
+              <TableCell align="right">{row.role}</TableCell>
+              <TableCell align="right">{row.number}</TableCell>
+            
+            </TableRow>
+          ))}
+        </TableBody>
+        </Table>
+        </TableContainer>
+
+
+        <Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
+
+            
         
-        <Roster key = "1" players = {teamPlayers} ></Roster>
-        <Schedule></Schedule>
+        <p>Team Schedule:</p>
+        <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableBody>
+            {dateRows.map((row) => (
+                <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                <TableCell >{row.date}</TableCell>
+                <TableCell >{row.time}</TableCell>
+                <TableCell >{row.location}</TableCell>
+                <TableCell >{row.opponent}</TableCell>
+                </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+
+        
         <Footer></Footer>
             
     </>)

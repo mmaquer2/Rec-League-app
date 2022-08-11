@@ -18,23 +18,22 @@ import Paper from '@mui/material/Paper';
 function Roster(props){
 
     const [teamRoster, setTeamRoster] = useState([])
-    const [rows,setTableRoster] = useState(teamRoster)
+    const [rows,setTableRoster] = useState([])
 
     function createData(username, position, role, number) {
       return { username, position, role, number};
     }
     
 
-    //TODO: how to handle changes to the table after the team state changes
 
   // place player data in the roster table 
    function persistTeamPlayers() {
      setTeamRoster(props.players);
       let tempRow = []
-      setTableRoster([])
+      
       //iterate through props.players, set the table values 
       teamRoster.forEach((value, key) =>{
-        console.log(value)
+        
         tempRow.push(createData(value.username, value.position, value.role,"1"));
 
       })
@@ -43,19 +42,20 @@ function Roster(props){
       
     }
 
-    /*
+    
     useEffect(function handleDataChange(){
      
-      persistTeamPlayers();
+      if(props.players.length > 0){
+        persistTeamPlayers();
+      }
+    },[]);
+    
 
-    });
-    */
-
-    //<Button variant="contained" sx={{width:50}}onClick = {openAddPlayerModal}> Add Player </Button> 
+   
     // open modal to invite player to the team.
     function openAddPlayerModal(){
-      console.log("Open modal to invite player to the team");
-
+      
+       
 
     } 
 
@@ -108,16 +108,4 @@ export { Roster }
 
 
 
-
-    // test data for team roster table 
-    /*
-    const rows = [
-      createData('Test', "F", "player", 16.0),
-      createData('Test', "F", "player", 16.0),
-      createData('Test', "F", "player", 16.0),
-      createData('Test', "F", "player", 16.0),
-      createData('Test', "F", "player", 16.0),
-      createData('Test', "F", "player", 16.0)
-    ];
-    */
 
