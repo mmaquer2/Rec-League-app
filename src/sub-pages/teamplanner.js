@@ -10,6 +10,13 @@ function TeamPlanner() {
 
     const [teamPlayers, setTeamPlayers] = useState([])
     const [rightCorner, setRightCornerTaker] = useState('');
+    const [leftCorner, setLefttCornerTaker] = useState('');
+
+    const [pentalyTaker, setPentalyTaker] = useState('');
+    let freeKickPriority = [];
+
+
+
 
      // handle the change of the select element 
      const handleChange = (event) => {
@@ -30,32 +37,31 @@ function TeamPlanner() {
     }
 
 
+    // open the create new play modal for the digital clipboard 
+    function createNewPlay(){
+
+
+    }
+
 
     function fetchTeamPlayers(){
 
 
     }
 
-    // assign 
-
-    // set piece takers...
-    // corner left and right 
-
-    // free kick left and right 
-
-    // throw ins
+    
+    // create a new formation, which this creates a set of empty slots for the players to be dropped
+    // into using the react-dnd "drag and drop framework"
+    function createFormation(){
 
 
-    // goal kicks 
-
-
-
+    }
 
     // choose formation
     // game type 11v1, 7v7, 6v7  
     // 4-4-2 
     // 3-5-2
-    // 
+    
 
 
 

@@ -1,5 +1,8 @@
 
 
+
+
+
 // this component will hold all the properties related to the data entry actions
 function ScoreKeeper(){
 
