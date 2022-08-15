@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
 function TeamPlanner() {
 
@@ -19,9 +20,12 @@ function TeamPlanner() {
 
 
      // handle the change of the select element 
-     const handleChange = (event) => {
+    const handleChangeRightCorner = (event) => {
         setRightCornerTaker(event.target.value)
-        
+    }
+
+    const handleChangeLeftCorner = (event) => {
+        setLefttCornerTaker(event.target.value);
     }
 
 
@@ -72,16 +76,33 @@ function TeamPlanner() {
                 
     <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Select Team to View</InputLabel>
+            <InputLabel id="demo-simple-select-label">Assign Left Corner Taker</InputLabel>
             <Select
                 value={rightCorner}
                 label="Select Team to View"
-                onChange={handleChange}>
+                onChange={handleChangeLeftCorner}>
                 {teamPlayers.map((item) => (
                 <MenuItem key ={item.name} value = {item}> {item}</MenuItem>))}
             </Select>
             </FormControl>
         </Box>
+
+        <Box sx={{ maxWidth: 120 }}>
+            <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Assign Right Corner Taker</InputLabel>
+            <Select
+                value={rightCorner}
+                label="Select Team to View"
+                onChange={handleChangeRightCorner}>
+                {teamPlayers.map((item) => (
+                <MenuItem key ={item.name} value = {item}> {item}</MenuItem>))}
+            </Select>
+            </FormControl>
+        </Box>
+
+        
+        
+        <Button variant="contained" sx={{width:250}} onClick = {submitSetPieceTakers}> Submit Changes </Button>
 
 
     </div>
