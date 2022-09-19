@@ -107,7 +107,6 @@ function Account(props){
         <p>username: </p>
 
         
-
         <Dialog open={openCreateTeam} onClose={handleClose}>
         <DialogTitle>Create new team</DialogTitle>
         <DialogContent>
