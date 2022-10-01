@@ -4,12 +4,15 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
-// firebase imports 
+
+// firebase imports
 import { getFirestore } from "@firebase/firestore";
 import { collection, query, where } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { app } from "../firebase-config"
-import { doc, getDoc } from "firebase/firestore";
+import { app, db } from "../firebase-config"
+import { doc, getDoc, addDoc, setDoc } from "firebase/firestore";
+
+import {teams} from "../db/database-test-data"
 
 // Component imports 
 import { Footer } from "../nav-components/footer"
@@ -23,6 +26,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
+import Button from "@mui/material/Button";
+
 
 
 function Dashboard(props){
@@ -31,12 +36,8 @@ function Dashboard(props){
     const db = getFirestore(app);
     var user = auth.currentUser;
 
-    // fetch user data and pass it to the correct properties in the sidebar
-
-    /*
-
-  
     // fetch user data document
+    /*
     async function getUserData(){        
         const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
         const docSnap = await getDoc(userDocRef); // get the document with the user UID
@@ -48,9 +49,36 @@ function Dashboard(props){
         }
     }
 
+     */
 
 
-    */
+    async function handleTestImportData() {
+
+        let test = teams["fcTulsa"];
+        let test2 = teams["chelsea"]
+
+        //import test team collections new collection
+        try {
+             const team1 = await setDoc(doc(db, "teams", "FC Tulsa"), test);
+            const docRef  =  await setDoc(doc(db, "teams", "Chelsea FC"), test2);
+            console.log("Document written");
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+
+        //import game data
+
+
+        //import team formations
+
+
+
+
+    }
+
+
+
 
 
     
@@ -65,7 +93,6 @@ function Dashboard(props){
       direction="row"
       justifyContent="center"
       alignItems="center"
-      
       >
         <Grid item xs={5} md={5}>
         <OverviewCard></OverviewCard>
@@ -73,6 +100,11 @@ function Dashboard(props){
         <Grid item xs={5} md={5}>
         <StatsCard></StatsCard>
         </Grid>
+
+          <Button variant="contained" sx={{m:2, width:250}}onClick={handleTestImportData}> Import Test Data </Button>
+
+
+
       </Grid>
     </Box>
   

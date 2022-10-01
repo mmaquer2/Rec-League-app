@@ -61,9 +61,9 @@ function CreateAccount(){
       }).catch((error) =>{
         console.log(error)
       })
-      
     }
 
+    // TODO: create password module
     function openForgotPasswordModal(){
       
     }
@@ -77,17 +77,17 @@ function CreateAccount(){
         <p>password min length of six characters</p>
 
         <p>Email Address:</p>
-        <TextField id="filled-basic"  sx={{ width: 500 }}  label="name@site.com" variant="filled" onChange={e => setEmail(e.target.value)} />
+        <TextField id="filled-basic"  sx={{ m:2, width: 500 }}  label="name@site.com" variant="filled" onChange={e => setEmail(e.target.value)} />
         <p>Username:</p>
-        <TextField id="filled-basic"  sx={{ width: 500 }}  label="username" variant="filled" onChange={e => setUserName(e.target.value)} />
+        <TextField id="filled-basic"  sx={{m:2, width: 500 }}  label="username" variant="filled" onChange={e => setUserName(e.target.value)} />
         <p>Password:</p>
-        <TextField type = "password" sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPassword(e.target.value)}  />
+        <TextField type = "password" sx={{m:2, width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPassword(e.target.value)}  />
         <p>Re Enter Password:</p>
-        <TextField type = "password" sx={{ width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPasswordTwo(e.target.value)}  />
+        <TextField type = "password" sx={{m:2, width: 500 }} id="filled-basic" label="********" variant="filled" onChange={e => setPasswordTwo(e.target.value)}  />
         
         <p onClick={openForgotPasswordModal}>Forgot password?</p>
         
-        <Button variant="contained" sx={{width:500}}onClick = {startAccountProcess}> Submit </Button>
+        <Button variant="contained" sx={{m:2, width:500}}onClick = {startAccountProcess}> Submit </Button>
 
 
     </div>

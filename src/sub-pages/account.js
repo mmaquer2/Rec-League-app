@@ -66,7 +66,7 @@ function Account(props){
 
     async function createTeam(newTeamName){
 
-        await setDoc(doc(db,"teams",newTeamName), {
+        await setDoc(doc(db,"teams", newTeamName), {
             manager: "",
             players: {},
             team_name: newTeamName
@@ -129,7 +129,7 @@ function Account(props){
         </DialogActions>
         </Dialog>
 
-    <Button variant="contained" sx={{width:250}}onClick={handleClickOpen}> Create Team </Button>
+    <Button variant="contained" sx={{m:2, width:250}}onClick={handleClickOpen}> Create Team </Button>
 
        
       
@@ -155,9 +155,9 @@ function Account(props){
       </Dialog>
 
 
-      <Button variant="contained" sx={{width:250}}onClick={handleOpenAccount}> Update Account Info </Button>
+      <Button variant="contained" sx={{ m:2, width:250}}onClick={handleOpenAccount}> Update Account Info </Button>
 
-      <Button variant="contained" sx={{width:250}}onClick={openForgotPasswordModal}> Change Password </Button>
+      <Button variant="contained" sx={{m:2, width:250}}onClick={openForgotPasswordModal}> Change Password </Button>
         
         
     
