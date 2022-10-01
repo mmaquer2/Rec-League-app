@@ -37,86 +37,21 @@ import DialogActions from "@mui/material/DialogActions";
 
 function Team(props){
 
-    const [username, setUserName] = useState("");
-    const [userTeams, setUserTeams] = useState([]);
-    const [selectedTeam, setSelectedTeam] = useState('');
     const [teamRoster, setTeamRoster] = useState([])
     const [rows,setTableRoster] = useState([])
     const [dateRows, setScheduleData] = useState([]);
     const [gameDates, setGameDates] = useState([]);
-
-
-
     const [teamPlayers, setTeamPlayers] = useState([]);
     const [teamSchedule, setTeamSchedule] = useState([]);
     const [teamStatistics,setTeamStats] = useState([]);
 
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const user = auth.currentUser;
 
-
-
-
-     //TODO: force log out and nav to login page if user is not logged, or UID is lost
-    if(!user.isLoggedIn){
-        console.log("User is not logged in");
-    }
-
-
-    // fetch user data document
-    async function getUserData(){        
-        const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
-        const docSnap = await getDoc(userDocRef); // get the document with the user UID
-        if(docSnap.exists()){
-            setUserName(docSnap.data().username);
-            setUserTeams(docSnap.data().teams);
-        } else {
-            console.log("ERROR: fetching user data")
-        }
-    }
-
-    // handle the change of the select element 
-    const handleChange = (event) => {
-        setSelectedTeam(event.target.value)
-        getTeamData(event.target.value);
-    }
-
-
-    async function getTeamData(teamName){
-
-        if(teamName !== ""){
-            const docRef = doc(db, "teams", teamName); // get Reference to the teams collection
-            const docSnap = await getDoc(docRef);
-            
-            if (docSnap.exists()) {
-              
-                setTeamPlayers(docSnap.data().players);
-                let emptyArray = []
-                setTeamRoster(emptyArray);
-                setTeamRoster(docSnap.data().players);
-                
-                setGameDates(emptyArray)
-                setGameDates(docSnap.data().gameEvents);
-
-                persistTeamPlayers();
-                persistTeamSchedule();
-            
-            } else {
-              
-              console.log("Error: No such document Found in the teams collection!");
-            }
-        }
-    }
-
-    //store username into local storage
-    useEffect(function persistUsername() {
-        getUserData();
-    }, []);
+    // TODO use effect to get props and display the team roster, and team schedule on the view
+    // props.viewTeam = fetch team data... then display on the various tables
 
     
     // create format data for the team roster table
-    function createData(username, position, role, number) {
+    function createPlayerTableRow(username, position, role, number) {
         return { username, position, role, number};
       }
 
@@ -128,7 +63,7 @@ function Team(props){
         if(teamRoster.length > 0){
              //iterate through props.players, set the table values 
             teamRoster.forEach((value, key) =>{
-            tempRow.push(createData(value.username, value.position, value.role,"1"));
+            tempRow.push(createPlayerTableRow(value.username, value.position, value.role,"1"));
         })
         }
        
@@ -154,7 +89,7 @@ function Team(props){
   
     }
 
-
+    //TODO:
     // How to open a modal from clicking on another state
     //<Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
     //<AddPlayerModal></AddPlayerModal>
@@ -163,22 +98,7 @@ function Team(props){
 
 
     <SideBar></SideBar>
-    <h2>Your Teams</h2>
-
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Select Team to View</InputLabel>
-            <Select
-                value={selectedTeam}
-                label="Select Team to View"
-                onChange={handleChange}>
-                {userTeams.map((item) => (
-                <MenuItem key ={item.name} value = {item}> {item}</MenuItem>))}
-            </Select>
-            </FormControl>
-        </Box>
-
-
+        <h3>Team Name: </h3>
         <h4>Team Summary: </h4>
         <p>Form:</p>
 
@@ -187,7 +107,7 @@ function Team(props){
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align ="right">Username</TableCell>
+            <TableCell align ="right">Name</TableCell>
             <TableCell align="right">Position</TableCell>
             <TableCell align="right">Role</TableCell>
             <TableCell align="right">Number</TableCell>

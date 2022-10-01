@@ -36,28 +36,28 @@ function Dashboard(props){
     const db = getFirestore(app);
     var user = auth.currentUser;
 
+    const [displayName, setDisplayName] = useState("");
+    const [currentViewTeam, setCurrentViewTeam] = useState("");
+
+    getUserData();
+
     // fetch user data document
-    /*
     async function getUserData(){        
         const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
         const docSnap = await getDoc(userDocRef); // get the document with the user UID
         if(docSnap.exists()){
-            setUserName(docSnap.data().username);
-            setUserTeams(docSnap.data().teams);
+            setCurrentViewTeam(docSnap.data().viewTeam);
+            setDisplayName(docSnap.data().username);
+
         } else {
             console.log("ERROR: fetching user data")
         }
     }
 
-     */
-
-
+    //import test team collections new collection
     async function handleTestImportData() {
-
         let test = teams["fcTulsa"];
         let test2 = teams["chelsea"]
-
-        //import test team collections new collection
         try {
              const team1 = await setDoc(doc(db, "teams", "FC Tulsa"), test);
              const team2  =  await setDoc(doc(db, "teams", "Chelsea FC"), test2);
@@ -65,24 +65,10 @@ function Dashboard(props){
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-
-
-        //import previous game data
-
-
-        //import team schedule data
-
-        //import team formations
-
-        // import
-
-
-
     }
 
 
-
-
+    //<OverviewCard></OverviewCard>
 
     
     return(
@@ -98,16 +84,16 @@ function Dashboard(props){
       alignItems="center"
       >
         <Grid item xs={5} md={5}>
-        <OverviewCard></OverviewCard>
+
         </Grid>
         <Grid item xs={5} md={5}>
+
+        <p> Welcome: {displayName}</p>
+        <p>Currently Viewing Team: {currentViewTeam} </p>
         <StatsCard></StatsCard>
         </Grid>
 
           <Button variant="contained" sx={{m:2, width:250}}onClick={handleTestImportData}> Import Test Data </Button>
-
-
-
       </Grid>
     </Box>
   

@@ -33,14 +33,13 @@ npm test
 npm run build
 
 ## deployment:
-- Under Construction
+- <<Under Construction >>
 
 
 ```
 
-### Team Formations
-- Under Construction 
-
+### Game Planner
+- 3D virtual game board to create game plans and strategies (Under Construction )
 
 ### Scorekeeper
 - Under Construction
