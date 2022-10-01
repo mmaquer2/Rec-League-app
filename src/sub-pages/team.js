@@ -27,7 +27,13 @@ import Button from '@mui/material/Button';
 import {TeamOverview } from "../team-view-components/teamOverview"
 import { Roster } from "../team-view-components/roster"
 import { Schedule } from "../team-view-components/schedule"
+import {AddPlayerModal} from "../modal/addPlayerModal";
 import { Footer } from "../nav-components/footer"
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
 
 function Team(props){
 
@@ -39,6 +45,8 @@ function Team(props){
     const [dateRows, setScheduleData] = useState([]);
     const [gameDates, setGameDates] = useState([]);
 
+
+
     const [teamPlayers, setTeamPlayers] = useState([]);
     const [teamSchedule, setTeamSchedule] = useState([]);
     const [teamStatistics,setTeamStats] = useState([]);
@@ -47,10 +55,13 @@ function Team(props){
     const db = getFirestore(app);
     const user = auth.currentUser;
 
+
+
+
      //TODO: force log out and nav to login page if user is not logged, or UID is lost
-    //if(!user.isLoggedIn){
-    //    console.log("User is not logged in");
-   // }
+    if(!user.isLoggedIn){
+        console.log("User is not logged in");
+    }
 
 
     // fetch user data document
@@ -87,9 +98,7 @@ function Team(props){
                 
                 setGameDates(emptyArray)
                 setGameDates(docSnap.data().gameEvents);
-                
-                
-                
+
                 persistTeamPlayers();
                 persistTeamSchedule();
             
@@ -106,12 +115,12 @@ function Team(props){
     }, []);
 
     
-
+    // create format data for the team roster table
     function createData(username, position, role, number) {
         return { username, position, role, number};
       }
 
-        // place player data in the roster table 
+   // place player data in the roster table
    function persistTeamPlayers() {
         
         let tempRow = []
@@ -141,30 +150,21 @@ function Team(props){
             tempRows.push(createTableDate(value.date,value.time,value.location,value.opponent))
         });
      }
-  
       setScheduleData(tempRows);
   
     }
-    
-    function openAddPlayerModal(){
-      
-       
-
-    } 
-
-    function openAddGameEventModal(){
 
 
-    }
-
+    // How to open a modal from clicking on another state
+    //<Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
+    //<AddPlayerModal></AddPlayerModal>
 
     return(<>
-    
+
+
     <SideBar></SideBar>
     <h2>Your Teams</h2>
 
-
-            
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Select Team to View</InputLabel>
@@ -177,7 +177,8 @@ function Team(props){
             </Select>
             </FormControl>
         </Box>
-        
+
+
         <h4>Team Summary: </h4>
         <p>Form:</p>
 
@@ -212,10 +213,6 @@ function Team(props){
         </TableContainer>
 
 
-        <Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
-
-            
-        
         <p>Team Schedule:</p>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -234,9 +231,7 @@ function Team(props){
             </TableBody>
         </Table>
         </TableContainer>
-        <Button variant="contained" sx={{width:250}}onClick = {openAddGameEventModal}> Add Game Event </Button>
 
-        
         <Footer></Footer>
             
     </>)

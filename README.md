@@ -1,25 +1,30 @@
-# Calcio.io
+# Soccer Team Manager App - Calcio.io
 
 ### Project Description:
 
-This is a project to assist in managing soccer teams, manage game schedules,
- discuss formations, assign game line-ups, and communicate within the team.
-
-
-### Images:
-
-
+This is a project to assist in managing soccer teams, game schedules,
+ discuss formations, create game line-ups, and communicate within the team.
 
 ### Deployment, Setup and Usage:
-To deploy the application on your own first you will need to create a google firebase account, and enable email authentication
+
+## Firebase set up:
+
+- To deploy the application on your own first you will need to create a google firebase account, and enable email authentication
+- in the example-firebase.config.js file, insert your assignment keys provided by the firebase console
+- within the firebase console, under authentication create a first user
+
+## React App start up
+
+- After completing the firebase set up, you can start the front end app via the command line
+- 
 
 ```bash
 
-## install npm dependecies 
+## install npm dependencies 
 npm i .
 
 ## start in developer mode 
-npm start
+npm run start
 
 ## run unit tests 
 npm test
@@ -27,13 +32,18 @@ npm test
 ## create build version
 npm run build
 
+## deployment:
+- Under Construction
+
 
 ```
 
+### Team Formations
+- Under Construction 
 
-### Resources:
-- react drag and drop plugin: 
- https://react-dnd.github.io/react-dnd/examples
+
+### Scorekeeper
+- Under Construction
 
 
 ### License:

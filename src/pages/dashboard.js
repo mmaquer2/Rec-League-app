@@ -60,18 +60,21 @@ function Dashboard(props){
         //import test team collections new collection
         try {
              const team1 = await setDoc(doc(db, "teams", "FC Tulsa"), test);
-            const docRef  =  await setDoc(doc(db, "teams", "Chelsea FC"), test2);
+             const team2  =  await setDoc(doc(db, "teams", "Chelsea FC"), test2);
             console.log("Document written");
         } catch (e) {
             console.error("Error adding document: ", e);
         }
 
 
-        //import game data
+        //import previous game data
 
+
+        //import team schedule data
 
         //import team formations
 
+        // import
 
 
 
