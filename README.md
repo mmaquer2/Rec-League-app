@@ -9,7 +9,7 @@ This is a project to assist in managing soccer teams, game schedules,
 
 ## Firebase set up:
 
-- To deploy the application on your own first you will need to create a google firebase account, and enable email authentication
+- To deploy the application on your own first you will need to create a Google firebase account, and enable email authentication
 - in the example-firebase.config.js file, insert your assignment keys provided by the firebase console
 - within the firebase console, under authentication create a first user
 
@@ -37,6 +37,9 @@ npm run build
 
 
 ```
+
+
+
 
 ### Game Planner
 - 3D virtual game board to create game plans and strategies (Under Construction )

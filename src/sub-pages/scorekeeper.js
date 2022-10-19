@@ -1,32 +1,62 @@
 
 
+import { useState, useEffect } from "react"
 
 
+/*
+    ScoreKeeper Page:
 
-// this component will hold all the properties related to the data entry actions
+
+ */
+
+
 function ScoreKeeper(){
 
-    // team selection 
+    const [friendlyGoals, setFriendlyGoals] = useState(0);
+    const [oppGoals, setOppGoals] = useState(0);
+    const [friendlyShots, setFriendlyShots] = useState(0);
+    const [oppShots, setOppShots] = useState(0);
 
-    
-    // select goals, stats, passes, failures per player
+    //TODO:
+    const GameEvent = {
+        "date": "",
+        "time": "",
+        "location": "",
+        "opponent": "",
+        homeTeam:"",
+        awayTeam:"",
+        homeScore:0,
+        awayScore: 0,
+        winningTeam: "",
+        gameStatRecord: {}
+    }
 
-    //TODO: timer for the game...count up to a certain number of time for each half of the game
+    const gameStatRecord = {
+        scores: [],
+        assist: [],
+        yellowCards:[],
+        redCards: [],
 
 
+    }
 
-    let currentAction = []
+    //TODO: submit a game with the firebase route
+    const submitTotals = () => {
 
+
+    }
 
 
     return (<>
 
-    
-    
+    <h3>Score keeper</h3>
+    <p>under construction, coming soon!</p>
+
+
     
     
     
     </>)
 }
 
-export { ScoreKeeper}
+export { ScoreKeeper }

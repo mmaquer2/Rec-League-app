@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
-function TeamPlanner() {
+function GamePlanner() {
 
     const [teamPlayers, setTeamPlayers] = useState([])
     const [rightCorner, setRightCornerTaker] = useState('');
@@ -15,8 +15,6 @@ function TeamPlanner() {
 
     const [pentalyTaker, setPentalyTaker] = useState('');
     let freeKickPriority = [];
-
-
 
 
      // handle the change of the select element 
@@ -41,7 +39,7 @@ function TeamPlanner() {
     }
 
 
-    // open the create new play modal for the digital clipboard 
+    // open the new play modal for the digital clipboard
     function createNewPlay(){
 
 
@@ -133,4 +131,4 @@ function TeamPlanner() {
 }
 
 
-export { TeamPlanner}
+export { GamePlanner}

@@ -34,6 +34,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
+import {getUserViewableTeam} from "../db/CRUD";
 
 function Team(props){
 
@@ -44,16 +45,45 @@ function Team(props){
     const [teamPlayers, setTeamPlayers] = useState([]);
     const [teamSchedule, setTeamSchedule] = useState([]);
     const [teamStatistics,setTeamStats] = useState([]);
+    const [userViewTeam, setCurrentViewTeam] = useState('')
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const user = auth.currentUser;
+
+    useEffect(()=>{
+        if(userViewTeam === ''){
+            fetchViewTeam();
+        }
+    }, []);
 
 
-    // TODO use effect to get props and display the team roster, and team schedule on the view
-    // props.viewTeam = fetch team data... then display on the various tables
+    async function fetchViewTeam(){
+        const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
+        const docSnap = await getDoc(userDocRef);
+        setCurrentViewTeam(docSnap.data().viewTeam);
 
-    
+    }
+
+
+    async function fetchTeamData(){
+
+        const teamRef = doc(db, "teams", userViewTeam); // get Reference to the users collection
+        const docSnap = await getDoc(teamRef);
+
+        //TODO:
+        setTeamRoster(docSnap.data().players);
+        console.log("Team players: " + teamRoster);
+        //persistTeamPlayers();
+        //persistTeamSchedule();
+
+    }
+
+
     // create format data for the team roster table
     function createPlayerTableRow(username, position, role, number) {
         return { username, position, role, number};
-      }
+    }
 
    // place player data in the roster table
    function persistTeamPlayers() {
@@ -66,12 +96,8 @@ function Team(props){
             tempRow.push(createPlayerTableRow(value.username, value.position, value.role,"1"));
         })
         }
-       
-     
      setTableRoster(tempRow)
-     
    }
-
 
 
     function createTableDate(date, time, location , opponent) {
@@ -98,9 +124,9 @@ function Team(props){
 
 
     <SideBar></SideBar>
-        <h3>Team Name: </h3>
+        <h3>Team Name: {userViewTeam} </h3>
         <h4>Team Summary: </h4>
-        <p>Form:</p>
+        <p>Form: </p>
 
         <p>Team Roster:</p>
       <TableContainer component={Paper}>

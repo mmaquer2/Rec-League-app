@@ -7,11 +7,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useNavigate } from "react-router-dom";
-import { getFirestore } from "@firebase/firestore";
+
 import { getAuth } from "firebase/auth";
 import { app } from "../firebase-config"
 
-//ICON
+//ICONS
 import SvgIcon from '@mui/material/SvgIcon';
 import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
@@ -23,6 +23,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import ScoreboardIcon from '@mui/icons-material/Scoreboard';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import BarChartIcon from '@mui/icons-material/BarChart';
+
 function SideBar(props) {
 
 
@@ -69,12 +71,16 @@ function SideBar(props) {
     }
 
     function openPlannerPage(){
+        navigate("/GamePlanner", { replace: true });
 
     }
 
     function openScoreKeeperPage(){
+        navigate("/ScoreKeeper", { replace: true });
+    }
 
-
+    function openDataManagerPage(){
+        navigate("/DataManager", {replace:true});
     }
 
     const logoutUser = async () => { 
@@ -148,6 +154,15 @@ function SideBar(props) {
             </ListItemButton>
           </ListItem>
 
+              <ListItem key={"DataManager"} disablePadding>
+                  <ListItemButton>
+                      <ListItemIcon>
+                          <BarChartIcon fontSize="large" />
+                      </ListItemIcon>
+                      <ListItemText primary={"DataManager"} onClick={openDataManagerPage} />
+                  </ListItemButton>
+              </ListItem>
+
           <ListItem key={"Log Out"} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -157,12 +172,7 @@ function SideBar(props) {
             </ListItemButton>
           </ListItem>
 
-
-
-
           </Drawer>
-
-
 
         </React.Fragment>
       ))}

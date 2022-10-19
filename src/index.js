@@ -10,6 +10,9 @@ import { CreateAccount } from "./pages/createAccount"
 import {Account} from "./sub-pages/account"
 import {Messages} from "./sub-pages/messages"
 import {Team} from "./sub-pages/team"
+import {ScoreKeeper} from "./sub-pages/scorekeeper";
+import {DataManager} from "./sub-pages/datamanager";
+import {GamePlanner} from "./sub-pages/teamplanner";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root")
@@ -23,7 +26,9 @@ root.render(
       <Route path ="/Account" element = {<Account />} />
       <Route path ="/Messages" element = {<Messages />} />
       <Route path ="/Teams" element = {<Team />} />
-
+      <Route path ="/ScoreKeeper" element = {<ScoreKeeper />} />
+      <Route path ="/GamePlanner" element = {<GamePlanner />} />
+      <Route path ="/DataManager" element = {<DataManager />} />
     </Routes>
   </BrowserRouter>
 );

@@ -25,6 +25,15 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
+/*
+
+    Account Page:
+    this account displays the number of
+
+
+ */
+
+
 
 function Account(props){
 
@@ -48,8 +57,6 @@ function Account(props){
     const db = getFirestore(app);
     const user = auth.currentUser;
 
-    const [openCreateTeam, setOpenTeam] = useState(false);
-    const [openUpdateAccount, setOpenUpdateAccount] = useState(false);
 
     //TODO: force log out and nav to login page if user is not logged, or UID is lost
     if(!user){
@@ -66,7 +73,6 @@ function Account(props){
     // handle the change of the select element
     const handleChange = (event) => {
         setSelectedTeam(event.target.value)
-
     }
 
 
@@ -89,15 +95,9 @@ function Account(props){
             console.log("ERROR: fetching user data")
         }
 
-        //getTeamData(selectedTeam); // fetch team data
+    }
 
-    };
-
-
-
-
-
-    // fetch user team data from the DB to fill the drop down menu
+    // fetch user team data from the DB to fill the drop-down menu
     async function getUserData(){
         const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
         const docSnap = await getDoc(userDocRef); // get the document with the user UID
@@ -111,34 +111,24 @@ function Account(props){
 
     // fetch team data from selected team schedule into the state of the app
     async function getTeamData(teamName){
-
         if(teamName !== ""){
             const docRef = doc(db, "teams", teamName); // get Reference to the teams collection
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
-
                 setTeamPlayers(docSnap.data().players);
                 let emptyArray = []
                 setTeamRoster(emptyArray);
                 setTeamRoster(docSnap.data().players);
-
                 setGameDates(emptyArray)
                 setGameDates(docSnap.data().gameEvents);
-
-
-                console.log(teamPlayers);
-
             } else {
-
                 console.log("Error: No such document Found in the teams collection!");
             }
         }
     }
 
 
-
-    // TODO: Modals for create account and
+    //TODO: Modals for create account and
     //     <Button variant="contained" sx={{ m:2, width:250}}onClick={handleOpenAccount}> Update Account Info </Button>
     //     <Button variant="contained" sx={{m:2, width:250}}onClick={handleClickOpen}> Create Team </Button>
     //     <Button variant="contained" sx={{m:2, width:250}}onClick={openForgotPasswordModal}> Change Password </Button>
@@ -171,13 +161,9 @@ function Account(props){
 
         <Button variant="contained" sx={{m:2, width:250}}onClick = {selectViewableTeam}> Select </Button>
 
-
-    
     </div>
-    
     <Footer></Footer>
     </>)
-
 }
 
 export { Account }

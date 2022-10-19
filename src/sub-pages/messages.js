@@ -8,19 +8,14 @@ function Messages(props){
     // TODO: fetch messages via the teams document record
 
     
-    return(
-    <>
+    return(<>
     <SideBar></SideBar>
-        <h2> Messages</h2>
-
-
-        
+        <h2>Messages</h2>
+        <p>under construction, coming soon!</p>
 
     <Footer></Footer>
 
-    
-    </>
-    )
+    </>)
 
 }
 
