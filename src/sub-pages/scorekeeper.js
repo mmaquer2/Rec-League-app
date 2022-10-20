@@ -53,9 +53,6 @@ function ScoreKeeper(){
     <p>under construction, coming soon!</p>
 
 
-    
-    
-    
     </>)
 }
 

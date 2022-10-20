@@ -9,7 +9,7 @@ import { Dashboard } from "./pages/dashboard"
 import { CreateAccount } from "./pages/createAccount"
 import {Account} from "./sub-pages/account"
 import {Messages} from "./sub-pages/messages"
-import {Team} from "./sub-pages/team"
+import {Team} from "./sub-pages/team-overview-page/team"
 import {ScoreKeeper} from "./sub-pages/scorekeeper";
 import {DataManager} from "./sub-pages/datamanager";
 import {GamePlanner} from "./sub-pages/teamplanner";

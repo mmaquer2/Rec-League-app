@@ -54,6 +54,14 @@ function Dashboard(props){
         }
     }
 
+    // fetch and log the current view team of the user
+    async function getUserViewTeam(){
+        const userDocRef = doc(db, "users", user.uid); // get Reference to the users collection
+        const docSnap = await getDoc(userDocRef);
+        console.log("user current view team:" + docSnap.data().viewTeam)
+    }
+
+
     //import test team collections new collection
     async function handleTestImportData() {
         let test = teams["fcTulsa"];
@@ -68,9 +76,7 @@ function Dashboard(props){
     }
 
 
-    //<OverviewCard></OverviewCard>
 
-    
     return(
     <>
 

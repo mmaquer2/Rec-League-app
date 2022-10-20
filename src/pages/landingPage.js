@@ -54,7 +54,6 @@ function LandingPage(){
     }
 
 
-
     // TODO: configure forgot password route and popup modal
     const openForgotPasswordModal = async () => {
 

@@ -11,7 +11,7 @@ function Messages(props){
     return(<>
     <SideBar></SideBar>
         <h2>Messages</h2>
-        <p>under construction, coming soon!</p>
+        <p> Under construction, coming soon!</p>
 
     <Footer></Footer>
 

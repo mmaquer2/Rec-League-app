@@ -12,7 +12,6 @@ import { getAuth } from "firebase/auth";
 import { app } from "../firebase-config"
 
 //ICONS
-import SvgIcon from '@mui/material/SvgIcon';
 import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
 import InboxIcon from '@mui/icons-material/Inbox';
