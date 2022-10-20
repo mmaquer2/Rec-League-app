@@ -11,28 +11,17 @@ import Button from '@mui/material/Button';
 
 
 // team view components:
-import {TeamOverview } from "../../team-view-components/teamOverview"
-import { Roster } from "../../team-view-components/roster"
-import { Schedule } from "../../team-view-components/schedule"
-import {AddPlayerModal} from "../../modal/addPlayerModal";
-import { Footer } from "../../nav-components/footer"
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import TextField from "@mui/material/TextField";
-import DialogActions from "@mui/material/DialogActions";
-import {getUserViewableTeam} from "../../db/CRUD";
 import {PlayerTable} from "./team-sub-pages/playertable";
 import {ScheduleTable} from "./team-sub-pages/scheduletable";
+import {AddPlayerModal} from "../../modal/addPlayerModal";
+import {AddGameEventModal} from "../../modal/addGameEventModal";
 
 function Team(){
 
     const [teamRoster, setTeamRoster] = useState([])
-    const [userViewTeam, setCurrentViewTeam] = useState('')
+    const [teamSchedule, setTeamSchedule] = useState([])
 
-    // state of handle open and closing of modal menu's
-    const [addPlayerModal, toggleAddPlayerModal] = useState(false);
-    const [addGameDateModal, toggleAddGameDate] = useState(false);
+    const [userViewTeam, setCurrentViewTeam] = useState('')
 
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -51,39 +40,33 @@ function Team(){
         const teamRef = doc(db, "teams", testTeam); // get Reference to the users collection
         const docTeam = await getDoc(teamRef);
         setTeamRoster(docTeam.data().players);
+        //setTeamSchedule(docTeam.data().)
+
         console.log(docTeam.data().players)
     }
 
 
-    async function testOpenModal(){
-        console.log("open test modal button pressed")
-    }
-
-    //TODO: conditional rendering for fetching data for tables
-
-    //TODO: Add player modal and button
-    // <Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
-
-
-    //TODO: add game event modal with button
-    //<Button variant="contained" sx={{width:250}}onClick = {openAddPlayerModal}> Add Player </Button>
-
-
     // todo: fix padding of footer so all elements are visible:
     // <Footer></Footer>
+
     return(<div>
 
         <SideBar></SideBar>
+
         <h3>Team Name: {userViewTeam} </h3>
+
+         <AddPlayerModal />
+         <AddGameEventModal />
 
         {teamRoster.length > 0 &&
             <PlayerTable roster = {teamRoster}></PlayerTable>
         }
 
-        <Button variant="contained" sx={{width:250}}onClick = {testOpenModal}> Test Open Modal </Button>
+        {teamSchedule.length > 0 &&
+            <ScheduleTable gameEvents={teamSchedule}></ScheduleTable>
+        }
 
 
-            
     </div>)
 
 }

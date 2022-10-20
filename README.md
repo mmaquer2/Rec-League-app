@@ -16,7 +16,6 @@ This is a project to assist in managing soccer teams, game schedules,
 ## React App start up
 
 - After completing the firebase set up, you can start the front end app via the command line
-- 
 
 ```bash
 
@@ -39,13 +38,18 @@ npm run build
 ```
 
 
-
-
 ### Game Planner
-- 3D virtual game board to create game plans and strategies (Under Construction )
+- (Under Construction )
+- 3D virtual game board to create game plans and strategies 
 
-### Scorekeeper
-- Under Construction
+### Scorekeeper:
+- (Under Construction)
+- record scores as the game happens in real time
+
+### Data Manager:
+- (Under Construction)
+
+
 
 
 ### License:
