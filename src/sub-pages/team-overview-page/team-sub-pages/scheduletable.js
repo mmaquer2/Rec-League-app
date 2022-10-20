@@ -5,22 +5,18 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import {Footer} from "../../../nav-components/footer";
 
 
 const ScheduleTable = ({gameEvents}) => {
 
     const [dateRows, setScheduleData] = useState([]);
-    const [gameDates, setGameDates] = useState([]);
 
     useEffect(()=>{
-        if(gameDates !== undefined){
-            setGameDates(gameEvents);
+        if(gameEvents !== undefined && gameEvents.length > 0){
             console.log("rendered team schedule table")
-            persistTeamSchedule();
+            console.log("Game Events from table component:" + gameEvents)
+            persistTeamSchedule(gameEvents);
         }
-
-
     }, []);
 
 
@@ -28,27 +24,38 @@ const ScheduleTable = ({gameEvents}) => {
         return {date, time, location , opponent};
     }
 
-    function persistTeamSchedule(){
+    function persistTeamSchedule(dates){
         let tempRows = []
-        if(gameDates.length > 0){
-            gameDates.forEach((value, key)=>{
+        if(dates.length > 0){
+            dates.forEach((value, key)=>{
                 tempRows.push(createGameEventRow(value.date,value.time,value.location,value.opponent))
             });
         }
         setScheduleData(tempRows);
     }
 
+    function deleteRow(){
+
+    }
+
+    function updateRow(){
+
+    }
+
+    // TODO: delete a row from the event table
+    // TODO: edit a row from a table
 
     return(<>
 
-        <p>Team Schedule:</p>
+        <p>Up Coming games:</p>
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ m:2, minWidth: 450 }} size = "small" datalabel-id = "upcoming-games" aria-label="team-upcoming-games">
                 <TableBody>
-                    {dateRows.map((row) => (
+                    {dateRows.map((row,key) => (
                         <TableRow
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+
                         >
                             <TableCell >{row.date}</TableCell>
                             <TableCell >{row.time}</TableCell>

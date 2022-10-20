@@ -130,7 +130,7 @@ function SideBar(props) {
               <ListItemIcon>
                 <Groups fontSize="large" />
               </ListItemIcon>
-              <ListItemText primary={"Manage Teams"} onClick={openTeamPage} />
+              <ListItemText primary={"Manage Team"} onClick={openTeamPage} />
             </ListItemButton>
           </ListItem>
 

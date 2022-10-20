@@ -40,9 +40,9 @@ function Team(){
         const teamRef = doc(db, "teams", testTeam); // get Reference to the users collection
         const docTeam = await getDoc(teamRef);
         setTeamRoster(docTeam.data().players);
-        //setTeamSchedule(docTeam.data().)
-
+        setTeamSchedule(docTeam.data().gameEvents);
         console.log(docTeam.data().players)
+        console.log(docTeam.data().gameEvents)
     }
 
 

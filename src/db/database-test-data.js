@@ -1,28 +1,6 @@
 
 
-
-const GameEvent1 = {
-    "date": "",
-    "time": "",
-    "location": "",
-    "opponent": ""
-
-}
-const GameEvent2 = {
-    "date": "",
-    "time": "",
-    "location": "",
-    "opponent": ""
-
-}
-const GameEvent3 = {
-    "date": "",
-    "time": "",
-    "location": "",
-    "opponent": ""
-
-}
-const GameEvent4 = {
+const GameEventResult = {
     "date": "",
     "time": "",
     "location": "",
@@ -42,6 +20,27 @@ const gameStatRecord = {
     yellowCards:[],
     redCards: [],
 
+}
+
+const GameEvent1 = {
+    "date": "10-21-2022",
+    "time": "1900",
+    "location": "Old Tafford",
+    "opponent": "Manchester United FC",
+
+}
+const GameEvent2 = {
+    "date": "10-12-2022",
+    "time": "1700",
+    "location": "white hart lane",
+    "opponent": "Spurs FC",
+}
+
+const GameEvent3 = {
+    "date": "10-15-2022",
+    "time": "1900",
+    "location": "madrid stadio olimpico",
+    "opponent": "Real Madrid FC",
 
 }
 
@@ -57,22 +56,21 @@ const player7 = { "position": "CB", "role": "player", "username": "player7"}
 const player8 = { "position": "CB", "role": "player", "username": "player8"}
 const player9 = { "position": "CB", "role": "player", "username": "player9"}
 const player10 = { "position": "CB", "role": "player", "username": "player10"}
-const player11 = { "position": "CB", "role": "player", "username": "player11"}
-const player12 = { "position": "CB", "role": "player", "username": "player12"}
-const player13 = { "position": "CB", "role": "player", "username": "player13"}
-const player14 = { "position": "CB", "role": "player", "username": "player14"}
-const player15 = { "position": "CB", "role": "player", "username": "player15"}
-const player16 = { "position": "CB", "role": "player", "username": "player16"}
-const player17 = { "position": "CB", "role": "player", "username": "player17"}
-const player18 = { "position": "CB", "role": "player", "username": "player18"}
+const player11 = { "position": "CF", "role": "player", "username": "player11"}
+const player12 = { "position": "FW", "role": "player", "username": "player12"}
+const player13 = { "position": "FW", "role": "player", "username": "player13"}
+const player14 = { "position": "FW", "role": "player", "username": "player14"}
+const player15 = { "position": "FW", "role": "player", "username": "player15"}
+const player16 = { "position": "FW", "role": "player", "username": "player16"}
+const player17 = { "position": "FW", "role": "player", "username": "player17"}
+const player18 = { "position": "FW", "role": "player", "username": "player18"}
 
 
 
 const fcTulsa = {
     name:"FC Tulsa",
     manager: "Mike Myers",
-    gameEvents: [
-    ],
+    gameEvents: [ GameEvent1, GameEvent2, GameEvent3],
     players: [
         player0,
         player1,
@@ -89,8 +87,7 @@ const fcTulsa = {
 const team2 = {
     name:"Chelsea",
     manager: "",
-    gameEvents: [
-    ],
+    gameEvents: [ GameEvent1, GameEvent2, GameEvent3 ],
     players: [
         player3,
         player4,
@@ -122,8 +119,7 @@ const team3 = {
 const team4 = {
     name:"team4",
     manager: "",
-    gameEvents: [
-    ],
+    gameEvents: [ GameEvent1, GameEvent2, GameEvent3],
     players: [
 
     ]
@@ -144,16 +140,11 @@ export const teams = {
 }
 
 
-
-
-
 const Teams = {
-
 
     "SpursFC": {
         "Manager": "Antonio Conte",
         players: {
-
 
 
 

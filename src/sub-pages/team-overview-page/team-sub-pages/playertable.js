@@ -8,13 +8,16 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 
+import EditIcon from '@mui/icons-material/Edit';
+import HomeIcon from "@mui/icons-material/Home";
+import * as React from "react";
+
 const PlayerTable = ({roster}) => {
 
     const [rows,setTableRoster] = useState([])
 
     useEffect(()=>{
         if(roster !== undefined && roster.length > 0) {
-            console.log(roster[0])
             persistTeamPlayers(roster);
             console.log("rendered player table")
         }
@@ -40,19 +43,25 @@ const PlayerTable = ({roster}) => {
         setTableRoster(tempRow)
     }
 
+    function deleteRow(){
 
+    }
+
+    function updateRow(){
+        console.log("update row icon pressed")
+    }
 
     return(<>
 
         <p>Team Roster:</p>
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 350 }} size = "small" aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell align ="right">Name</TableCell>
                         <TableCell align="right">Position</TableCell>
                         <TableCell align="right">Role</TableCell>
-                        <TableCell align="right">Number</TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -66,7 +75,7 @@ const PlayerTable = ({roster}) => {
                             </TableCell>
                             <TableCell align="right">{row.position}</TableCell>
                             <TableCell align="right">{row.role}</TableCell>
-                            <TableCell align="right">{row.number}</TableCell>
+                            <TableCell align="right"> <EditIcon fontSize="small" onClick = {updateRow} /> </TableCell>
 
                         </TableRow>
                     ))}

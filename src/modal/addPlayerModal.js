@@ -31,14 +31,20 @@ const AddPlayerModal = () => {
             email:playerEmail,
         }
 
+        // TODO: input validation:
+
+        // fields are not empty, no invalid charcters,
+        // the spaces are not actually
+
         console.log("added new player: " + playerName)
         console.log("added new player email: " + playerName)
         console.log("added new player email: " + playerPosition)
 
+
+        //TODO: post new user to database
+
         //get team name
-
         //update team document
-
         //send document update to firebase db
 
         handleCloseAddPlayer(); //close player
