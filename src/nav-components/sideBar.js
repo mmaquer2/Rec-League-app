@@ -51,8 +51,6 @@ function SideBar(props) {
  
     function openHomePage(){
         navigate("/dashboard", { replace: true });
-
-    
     }
 
     function openAccountPage(){

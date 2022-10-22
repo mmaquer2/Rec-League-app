@@ -1,10 +1,15 @@
-html { height: 100%; }
+html {
+  height: 100%;
+  font-family: 'Play', sans-serif;
+
+}
 
 
 body {
   min-height:100%; 
-  position:relative; 
-  padding-bottom:[footer-height] 
+  position:relative;
+  font-family: 'Play', sans-serif;
+
 }
 
 .App {
@@ -98,7 +103,7 @@ body {
   color: white;
   position: absolute; 
   left: 0 ; right: 0; bottom: 0; 
-  height:[footer-height] 
+
   
 
 }

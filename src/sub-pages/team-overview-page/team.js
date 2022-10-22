@@ -1,13 +1,12 @@
 
 import { useState, useEffect } from "react"
 import {SideBar} from "../../nav-components/sideBar"
+import {Footer} from "../../nav-components/footer";
 
 import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { app } from "../../firebase-config"
 import { doc, getDoc } from "firebase/firestore";
-
-import Button from '@mui/material/Button';
 
 
 // team view components:
@@ -65,6 +64,7 @@ function Team(){
         {teamSchedule.length > 0 &&
             <ScheduleTable gameEvents={teamSchedule}></ScheduleTable>
         }
+
 
 
     </div>)
