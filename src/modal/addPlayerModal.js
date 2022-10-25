@@ -6,14 +6,20 @@ import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import {doc, getDoc, setDoc} from "firebase/firestore";
+import {getAuth} from "firebase/auth";
+import {app} from "../firebase-config";
+import {getFirestore} from "@firebase/firestore";
 
 
 const AddPlayerModal = () => {
 
     const [openCreatePlayer, setOpenPlayer] = useState(false);
     const [playerName, setPlayerName] = useState("");
-    const [playerEmail, setPlayerEmail] = useState("");
     const [playerPosition, setPlayerPosition] = useState("");
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
     //open the dialog based on the prop status
     function openAddPlayerModal(){
@@ -25,27 +31,38 @@ const AddPlayerModal = () => {
     };
 
 
-    function addNewPlayer(){
-        const newPlayer = {
-            name: playerName,
-            email:playerEmail,
+    async function addNewPlayer(){
+
+        if(playerName === ""){
+
+            console.log("ERROR: cannot add player, empty name input")
+
+
+        } else {
+
+            console.log("added new player: " + playerName)
+            console.log("new player position: " + playerPosition)
+
+            const newPlayer =
+                { "position": playerPosition,
+                    "role": "player",
+                    "username": playerName
+                }
+
+            //TODO: change this get the current view team state
+            let testTeam = "Chelsea FC"
+            const teamRef = doc(db, "teams", testTeam); // get Reference to team data collection
+            const docTeam = await getDoc(teamRef);
+
+            let currentRoster = docTeam.data().players; // add player to the roster
+            currentRoster.push(newPlayer);
+
+            const updatedTeam = {}
+
+            // update team roster
+            // await setDoc(doc(db, "teams", teamName), updatedTeam); //set the team doc with the updated value
         }
 
-        // TODO: input validation:
-
-        // fields are not empty, no invalid charcters,
-        // the spaces are not actually
-
-        console.log("added new player: " + playerName)
-        console.log("added new player email: " + playerName)
-        console.log("added new player email: " + playerPosition)
-
-
-        //TODO: post new user to database
-
-        //get team name
-        //update team document
-        //send document update to firebase db
 
         handleCloseAddPlayer(); //close player
 

@@ -65,8 +65,6 @@ function Team(){
             <ScheduleTable gameEvents={teamSchedule}></ScheduleTable>
         }
 
-
-
     </div>)
 
 }
